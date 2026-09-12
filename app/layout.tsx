@@ -17,9 +17,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" 
-    className="dark"
-    style={{ colorScheme: "dark" }}>
+    <html lang="en" suppressHydrationWarning>
       <body className={`${jostSans.className} antialiased`}>
         <ThemeProvider
           attribute="class"
