@@ -3,28 +3,15 @@ import { cn } from "cn";
 import Link from "next/link";
 import { useTheme } from "next-themes";
 
-import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
-import { LoginLink, LogoutLink } from "@kinde-oss/kinde-auth-nextjs/components";
-
-import { LogOutIcon, MoonIcon, SunIcon } from "lucide-react";
+import { MoonIcon, SunIcon } from "lucide-react";
 
 import Logo from "@/components/logo";
 
 import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const Header = () => {
   const { theme, setTheme } = useTheme();
-  const { user } = useKindeBrowserClient();
+
   const isDark = theme === "dark";
 
   return (
@@ -57,38 +44,8 @@ const Header = () => {
                 )}
               />
             </Button>
-            {user ? (
-              <DropdownMenu>
-                <DropdownMenuTrigger>
-                  <Avatar className="h-8 w-8 shrink-0 rounded-full">
-                    <AvatarImage
-                      src={user?.picture || ""}
-                      alt={user?.given_name || ""}
-                    />
-                    <AvatarFallback className="rounded-lg">
-                      {user?.given_name?.charAt(0)}
-                      {user?.family_name?.charAt(0)}
-                    </AvatarFallback>
-                  </Avatar>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent className="w-56" align="end">
-                  <DropdownMenuGroup>
-                    <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                  </DropdownMenuGroup>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem>
-                    <LogoutLink className="w-full flex items-center">
-                      <LogOutIcon className="size-4" />
-                      Log Out
-                    </LogoutLink>
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-            ) : (
-              <LoginLink>
-                <Button>Sign In</Button>
-              </LoginLink>
-            )}
+
+            <Button>Sign In</Button>
           </div>
         </div>
       </header>
